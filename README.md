@@ -1,8 +1,5 @@
 # Hi, I'm Caleb. This is my website.
 
-Run it locally with
-```sh
-git clone git@github.com:cwschilly/homepage.git
-cd homepage
-jekyll serve
-```
+Well, no. This is the source code.
+
+_[This](https://calebschilly.com)_ is my website.
