@@ -53,15 +53,33 @@ body {
     gap: 1rem;
 }
 
+.nav-logo-title .site-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* allow it to shrink inside flex container */
+    min-width: 0;
+}
+
 .logo-placeholder {
     width: 45px;
     height: 45px;
     display: block;
 }
 
+.logo-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-title .site-title {
+    flex: 1 1 auto;
+}
+
 .site-title {
     font-family: 'Lemon', 'Slackey', 'Segoe UI', Arial, sans-serif;
-    font-size: 1.65rem;
+    font-size: clamp(1.1rem, 1.1rem + 1.2vw, 1.65rem);
     font-weight: 400;
     letter-spacing: 0.03em;
     color: var(--white);
