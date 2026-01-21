@@ -22,8 +22,10 @@ title: Contact
             </p>
         </div> -->
 
-        <!-- Form Placeholder -->
-        <form class="contact-form" id="contactForm">
+        <!-- Contact form -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xykknnvw" method="POST" novalidate>
+            <!-- Honeypot to deter bots (do not name this "email" or "name") -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="form-group">
                 <label for="name" class="form-label">Name</label>
                 <input
@@ -75,9 +77,10 @@ title: Contact
                 Send Message
             </button>
 
-            <p class="form-note">
-                Note: Form integration with third-party service pending. This is a placeholder.
-            </p>
+            <p class="form-note" id="formNote" style="display:none;"></p>
+
+            <input type="hidden" name="_subject" id="_subject" value="New contact form submission">
+            <input type="hidden" name="_next" value="/pages/contact.html?success=1">
         </form>
 
         <!-- Alternative Contact Methods -->

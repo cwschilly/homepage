@@ -31,13 +31,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Contact Form Handling (Placeholder)
+// Contact Form Handling (Formspree + Fetch)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        alert('Contact form submission is not yet configured. Please integrate with a third-party service like Formspree or EmailJS.');
-        // Future implementation will handle form submission here
+
+        const formNote = document.getElementById('formNote');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        // Basic client-side validation
+        const name = contactForm.querySelector('#name');
+        const email = contactForm.querySelector('#email');
+        const message = contactForm.querySelector('#message');
+
+        if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+            formNote.style.display = 'block';
+            formNote.textContent = 'Please fill out the required fields.';
+            return;
+        }
+
+        // Disable button while submitting
+        submitBtn.disabled = true;
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+
+        // Prepare form data
+        const data = new FormData(contactForm);
+
+        try {
+            const action = contactForm.getAttribute('action');
+            const resp = await fetch(action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (resp.ok) {
+                formNote.style.display = 'block';
+                formNote.textContent = 'Thanks -- I\'ll get back to you soon!';
+                contactForm.reset();
+            } else {
+                const result = await resp.json().catch(() => ({}));
+                formNote.style.display = 'block';
+                formNote.textContent = result.error || 'There was a problem sending your message. Please try again later.';
+            }
+        } catch (err) {
+            formNote.style.display = 'block';
+            formNote.textContent = 'Network error. Please check your connection and try again.';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
     });
 }
 
