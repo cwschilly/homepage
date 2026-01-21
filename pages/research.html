@@ -1,0 +1,213 @@
+---
+layout: default
+title: Research
+---
+<!-- Page Header -->
+<section class="page-header">
+    <div class="content-container">
+        <h2 class="page-title">Research</h2>
+        <p class="page-subtitle">Scientific Computing & Astrophysics</p>
+    </div>
+</section>
+
+<!-- Publications Section -->
+<section class="content-section">
+    <div class="content-container">
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 3rem;">
+            <img src="{{ site.baseurl }}/public/aurora.jpg" alt="Aurora" style="width: 100%; max-width: 500px; display: block;">
+            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--gray-medium); text-align: center;">
+                One of the world's coolest, most powerful human-made creations.<br>
+                And that's the Aurora supercomputer behind me.
+            </p>
+        </div>
+        <h3 class="section-title">Publications</h3>
+
+        <div class="publication-item">
+            <h4 class="publication-title">Accelerating an Electromagnetic Simulation via Memory-Constrained Task-Based Load Balancing</h4>
+            <p class="publication-meta">Association for Computing Machinery • 2025</p>
+            <p class="publication-abstract">
+                We employ our unified model for approximating work in a distributed system to
+                signficantly speed-up the execution of a complex electromagetic simulation application.
+            </p>
+            <div class="publication-links">
+                <a href="#" class="link-button" data-modal="abstract-1">Abstract</a>
+                <a href="https://doi.org/10.1145/3754598.3754642" class="link-button">DOI</a>
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <h4 class="publication-title">New Results on Communication- and Memory-Aware Load Balancing Model and Algorithms</h4>
+            <p class="publication-meta">Technical Report: US DOE NNSA • 2024</p>
+            <p class="publication-abstract">
+                We introduce an innovative approach to distributed-memory load balancing:
+                a unified, reduced-order model that combines three key components to describe “work”
+                in a distributed system: computation, communication, and memory.
+            </p>
+            <div class="publication-links">
+                <a href="#" class="link-button" data-modal="abstract-2">Abstract</a>
+                <a href="https://doi.org/10.2172/2498423" class="link-button">DOI</a>
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <h4 class="publication-title">Distributed Asynchronous Contact Mechanics with DARMA/vt</h4>
+            <p class="publication-meta">Workshop on Asynchronous Many-Task Systems and Applications • 2024</p>
+            <p class="publication-abstract">
+                We present our work on distBVH, a distributed contact solution using
+                the DARMA/vt library for asynchronous tasking that is also capable of
+                running on-node Kokkos-based kernels.
+            </p>
+            <div class="publication-links">
+                <a href="#" class="link-button" data-modal="abstract-3">Abstract</a>
+                <a href="https://doi.org/10.1007/978-3-031-61763-8_4" class="link-button">DOI</a>
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <h4 class="publication-title">The Pursuit of Dippiness</h4>
+            <p class="publication-meta">Student Paper: UNC-CH Department of Physics & Astronomy • 2021</p>
+            <p class="publication-abstract">
+                We search through the Evryscope database in order to find dippers, aperiodic stars with dips in
+                flux on the order of 25% of their original magnitude. Our customized algorithm succeeds in identifying
+                one confirmed dipper and three additional candidates.
+            </p>
+            <div class="publication-links">
+                <a href="{{ site.baseurl }}/docs/dippiness.pdf" class="link-button" target="_blank" rel="noopener noreferrer">PDF</a>
+            </div>
+        </div>
+    </div>
+</section><!-- Projects Section -->
+<!-- <section class="content-section bg-section">
+    <div class="content-container">
+        <h3 class="section-title">Research Projects</h3>
+        <div class="content-grid">
+            <div class="content-card">
+                <h4 class="card-title">Project Alpha</h4>
+                <p class="card-text">
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                </p>
+            </div>
+            <div class="content-card">
+                <h4 class="card-title">Project Beta</h4>
+                <p class="card-text">
+                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                    adipisci velit, sed quia non numquam eius modi tempora incidunt.
+                </p>
+            </div>
+            <div class="content-card">
+                <h4 class="card-title">Project Gamma</h4>
+                <p class="card-text">
+                    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                    laboriosam, nisi ut aliquid ex ea commodi consequatur.
+                </p>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Modal for Abstract -->
+<div class="modal-overlay" id="abstract-1-modal">
+    <div class="modal-content">
+        <button class="modal-close" data-close-modal="abstract-1-modal" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">Accelerating an Electromagnetic Simulation via Memory-Constrained Task-Based Load Balancing</h3>
+        <div class="modal-text">
+            <p><strong>Authors:</strong>
+                Jonathan Lifflander, Nicole Slattengren, Philippe Pebay, Pierre Pebay,
+                <strong style="color: var(--rust);">Caleb Schilly</strong>,
+                Robert Pfeiffer, Joseph Kotulski</p>
+            <br>
+            <p><strong>Published:</strong> Association for Computing Machinery, 2025</p>
+            <p style="margin-top: 1.5rem;">
+                While load balancing in distributed-memory computing has been well-studied,
+                we present an innovative approach to tackle challenges that an electromagnetic
+                application poses due to irregular workloads and tight memory constraints.
+                To this end, we present a unified model for approximating work in a distributed
+                system that combines three key components: computation, communication, and memory.
+                This enables the exploration of complex trade-offs in task placement, such as increased
+                parallelism at the expense of data replication. We then present our new fully
+                distributed load balancing strategy that incorporates this model.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                To predict workloads for the matrix assembly of the electromagnetics application,
+                we apply machine learning across an ensemble of executions to train a neural network,
+                which makes online predictions for our task-based decomposition, informing the load
+                balancer of the computational loads. Finally, we demonstrate that our approach,
+                when applied to this application, leads to substantial speedups, up to 2.0x,
+                thereby decreasing time-to-solution for the imbalanced execution.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="abstract-2-modal">
+    <div class="modal-content">
+        <button class="modal-close" data-close-modal="abstract-2-modal" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">New Results on Communication- and Memory-Aware Load Balancing Model and Algorithms</h3>
+        <div class="modal-text">
+            <p><strong>Authors:</strong>
+                Jonathan Lifflander, Nicole Slattengren, Philippe Pebay, Pierre Pebay,
+                <strong style="color: var(--rust);">Caleb Schilly</strong>,
+                Robert Pfeiffer, Joseph Kotulski</p>
+            <br>
+            <p><strong>Technical Report:</strong> DOE NNSA, 2024</p>
+            <p style="margin-top: 1.5rem;">
+                While load balancing in distributed-memory computing has been well-studied,
+                we present an innovative approach to this problem: a unified, reduced-order
+                model that combines three key components to describe “work” in a distributed
+                system: computation, communication, and memory. Our model enables an optimizer
+                to explore complex tradeoffs in task placement, such as augmented parallelism,
+                at the expense of data replication increasing memory usage.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                We propose a fully distributed, heuristic-based load balancing optimization algorithm,
+                and demonstrate that it quickly finds close-to-optimal solutions. We formalize the
+                complex optimization problem as a mixed-integer linear program, and compare it to
+                our strategy. Finally, we show that when applied to an electromagnetics code, our
+                approach obtains up to 2.3x speedups for the imbalanced execution.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="abstract-3-modal">
+    <div class="modal-content">
+        <button class="modal-close" data-close-modal="abstract-3-modal" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">New Results on Communication- and Memory-Aware Load Balancing Model and Algorithms</h3>
+        <div class="modal-text">
+            <p><strong>Authors:</strong>
+                Nicolas Morales, Reese Jones, Jonathan Lifflander,
+                Philippe P. Pébaÿ, Sean McGovern, Cezary Skrzyński,
+                <strong style="color: var(--rust);">Caleb Schilly</strong>
+            </p>
+            <br>
+            <p><strong>Conference:</strong> Workshop on Asynchronous Many-Task Systems and Applications, 2024</p>
+            <p style="margin-top: 1.5rem;">
+                Contact mechanics, or the modeling of the impenetrability of solid objects,
+                is fundamental to computational solid mechanics (CSM) applications yet is
+                oftentimes the most challenging in terms of computational efficiency and performance.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                These challenges arise from the irregularity and highly dynamic nature of contact
+                simulation, particularly with algorithms designed for distributed memory architectures.
+                First among these challenges is the inherent load imbalance when distributing contact
+                load across compute nodes. This imbalance is highly problem dependent, and relates to
+                the surface area of contact manifolds and the volume around them, rather than the
+                distribution of the mesh over compute nodes, meaning the application load can vary
+                drastically over different phases. The dynamic nature of contact problems motivates
+                the use of distributed asynchronous many-tasking (AMT) frameworks to efficiently handle
+                irregular workloads.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                In this paper, we present our work on distBVH, a distributed contact solution using
+                the DARMA/vt library for asynchronous tasking that is also capable of running on-node
+                Kokkos-based kernels. We explore how distBVH addresses the various challenges of CSM
+                contact problems. We evaluate the use of many of DARMA/vt's dynamic load balancers and
+                demonstrate how our load balancing approach can provide significant performance
+                improvements on various computational solid mechanics benchmarks. Additionally, we show
+                how our approach can take advantage of DARMA/vt for tasking and efficient on-node kernels
+                using Kokkos to scale over hundreds of processing elements.
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Slackey&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/public/logo-orange.svg">
+  <link rel="shortcut icon" href="{{ site.baseurl }}/public/logo-orange.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
+</head>
+<body class="bg-white text-black">
+  {% include nav.html %}
+  {{ content }}
+
+  <footer style="background-color: var(--dark-green); color: white; text-align: center; padding: 2rem 1rem; margin-top: 4rem;">
+    <p style="margin: 0; font-size: 0.875rem;">
+      Official site of Caleb Schilly<sup style="font-size: 0.6em;">TM</sup> (Est. 2001)  •  <a href="{{ site.baseurl }}/pages/contact.html" class="lgreen-link">Contact</a>
+    </p>
+  </footer>
+
+  <script src="{{ site.baseurl }}/script.js"></script>
+</body>
+</html>
