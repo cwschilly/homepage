@@ -8,8 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Slackey&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="icon" href="{{ site.baseurl }}/favicon.ico">
-  <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico">
+  <!-- SVG favicon (primary) -->
+  <link rel="icon" href="{{ site.baseurl }}/public/logo-orange-sq.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="{{ site.baseurl }}/public/logo-orange-sq.svg" type="image/svg+xml">
+  <!-- PNG fallback and Apple touch icon (generate logo-orange-sq.png with the script in /scripts if needed) -->
+  <link rel="icon" href="{{ site.baseurl }}/public/logo-orange-sq.png" type="image/png">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/public/logo-orange-sq.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
 </head>
@@ -19,7 +23,7 @@
 
   <footer style="background-color: var(--dark-green); color: white; text-align: center; padding: 2rem 1rem; margin-top: 4rem;">
     <p style="margin: 0; font-size: 0.875rem;">
-      Official site of Caleb Schilly<sup style="font-size: 0.6em;">TM</sup> (Est. 2001)  •  <a href="{{ site.baseurl }}/pages/contact.html" class="lgreen-link">Contact</a>
+      Hand-rolled by Caleb Schilly  •  <a href="{{ site.baseurl }}/pages/contact.html" class="lgreen-link">Contact</a>
     </p>
   </footer>
 
