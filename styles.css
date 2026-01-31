@@ -752,6 +752,22 @@ body {
     margin: 0;
 }
 
+/* PDF.js viewer container */
+.pdf-viewer-container {
+    width: 100%;
+    max-height: calc(90vh - 3.5rem); /* toolbar height */
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.pdf-viewer-container canvas {
+    display: block;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    border-radius: 6px;
+    background: white;
+}
+
 /* For wide modals (PDF viewer) move the close button to the left to avoid
    overlapping the toolbar placed at the top-right */
 /* keep the modal close button on the right for consistency; the extra padding above

@@ -91,9 +91,14 @@ if (contactForm) {
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        // Use the element's `hash` property to avoid invalid selector issues
+        const hash = this.hash; // returns string like "#section" or ""
+        if (!hash || hash === '#') return; // nothing to scroll to
+
+        // Only prevent default when we have a valid target to scroll to
+        const target = document.querySelector(hash);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -119,12 +124,12 @@ function closeModal(modalId) {
     }
 }
 
-// Clear embedded PDF when closing the PDF modal
+// Clear embedded PDF content when closing the PDF modal
 const originalCloseModal = closeModal;
 closeModal = function(modalId) {
     if (modalId === 'pdfModal') {
-        const pdfViewer = document.getElementById('pdfViewer');
-        if (pdfViewer) pdfViewer.src = '';
+        const pdfContainer = document.getElementById('pdfViewerContainer');
+        if (pdfContainer) pdfContainer.innerHTML = '';
     }
     originalCloseModal(modalId);
 };
@@ -156,26 +161,83 @@ if (legacyCloseModal) {
     });
 }
 
-// Handle PDF preview buttons
+// PDF.js loader + renderer
+const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
+const PDFJS_WORKER_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+function loadPdfJsOnce() {
+    return new Promise((resolve, reject) => {
+        if (window.pdfjsLib) return resolve(window.pdfjsLib);
+        const s = document.createElement('script');
+        s.src = PDFJS_CDN;
+        s.onload = () => {
+            if (!window.pdfjsLib) return reject(new Error('pdfjs failed to load'));
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CDN;
+            resolve(window.pdfjsLib);
+        };
+        s.onerror = () => reject(new Error('Failed to load pdfjs script'));
+        document.head.appendChild(s);
+    });
+}
+
+async function renderPdfToContainer(pdfUrl, containerEl) {
+    containerEl.innerHTML = '';
+    const loading = document.createElement('div');
+    loading.textContent = 'Loading document...';
+    loading.style.padding = '1rem';
+    containerEl.appendChild(loading);
+
+    try {
+        const pdfjsLib = await loadPdfJsOnce();
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        containerEl.innerHTML = '';
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            // eslint-disable-next-line no-await-in-loop
+            const page = await pdf.getPage(pageNum);
+            const viewport = page.getViewport({ scale: 1 });
+            const containerWidth = containerEl.clientWidth || (window.innerWidth * 0.9);
+            const scale = (containerWidth / viewport.width) * (window.devicePixelRatio || 1);
+            const scaledViewport = page.getViewport({ scale });
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = Math.floor(scaledViewport.width);
+            canvas.height = Math.floor(scaledViewport.height);
+            canvas.style.width = '100%';
+            canvas.style.height = 'auto';
+            containerEl.appendChild(canvas);
+
+            const renderContext = { canvasContext: context, viewport: scaledViewport };
+            // eslint-disable-next-line no-await-in-loop
+            await page.render(renderContext).promise;
+        }
+    } catch (err) {
+        containerEl.innerHTML = '<p style="padding:1rem;color:var(--rust);">Failed to load document.</p>';
+        console.error('PDF render error', err);
+    }
+}
+
+// Handle PDF preview buttons using PDF.js renderer
 document.querySelectorAll('[data-pdf]').forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', async function(e) {
         e.preventDefault();
         const pdfUrl = this.getAttribute('data-pdf');
         const parent = this.closest('.writing-item') || this.closest('.content-card') || document.body;
         const titleEl = parent.querySelector('.writing-title, .card-title');
         const title = titleEl ? titleEl.textContent.trim() : 'Preview';
 
-        const pdfViewer = document.getElementById('pdfViewer');
+        const pdfContainer = document.getElementById('pdfViewerContainer');
         const pdfTitle = document.getElementById('pdfTitle');
         const pdfDownload = document.getElementById('pdfDownload');
         const pdfOpenNew = document.getElementById('pdfOpenNew');
 
-        if (pdfViewer) pdfViewer.src = pdfUrl;
         if (pdfTitle) pdfTitle.textContent = title;
         if (pdfDownload) pdfDownload.href = pdfUrl;
         if (pdfOpenNew) pdfOpenNew.href = pdfUrl;
 
         openModal('pdfModal');
+        if (pdfContainer) await renderPdfToContainer(pdfUrl, pdfContainer);
     });
 });
 
