@@ -237,6 +237,12 @@ body {
     padding: 4rem 2rem;
 }
 
+/* Compact variant for sections that need less vertical spacing */
+.content-section--compact {
+    padding-top: 0.5rem;
+    padding-bottom: 2.5rem;
+}
+
 .bg-section {
     background-color: var(--gray-light);
 }
@@ -714,6 +720,42 @@ body {
     position: relative;
     animation: modalSlideIn 0.3s ease;
 }
+
+/* Wider modal variant for embedded viewers (PDFs, videos) */
+.modal-content--wide {
+    max-width: 95%;
+    width: 95%;
+    padding: 1rem 1.25rem;
+    /* Leave extra space on the right so toolbar buttons don't overlap the close button */
+    padding-right: 4rem;
+    max-height: 90vh;
+}
+
+.pdf-iframe {
+    width: 100%;
+    height: 75vh;
+    border: none;
+}
+
+/* Toolbar for PDF modal: give it a fixed height and center children vertically
+   so the title sits centered between the top of the modal and the top of the iframe */
+.modal-content--wide .pdf-modal-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    height: 3.5rem; /* adjust this value to increase/decrease the vertical spacing */
+}
+
+.modal-content--wide .modal-title {
+    margin: 0;
+}
+
+/* For wide modals (PDF viewer) move the close button to the left to avoid
+   overlapping the toolbar placed at the top-right */
+/* keep the modal close button on the right for consistency; the extra padding above
+   prevents toolbar buttons from reaching the very edge */
 
 @keyframes modalSlideIn {
     from {

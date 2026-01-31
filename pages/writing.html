@@ -31,7 +31,7 @@ title: Writing
                         <b>Comps</b>: <i>Bluey</i> meets <i>Bojack Horseman</i>...minus the existential dread.
                     </p>
                     <div class="publication-links">
-                        <a href="#" class="link-button">Preview</a>
+                        <a href="#" class="link-button" data-pdf="{{ site.baseurl }}/scripts/philomena.pdf">Read</a>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ title: Writing
                     <h4 class="writing-title">Chameleon</h4>
                     <p class="writing-meta">Short Film • 6-11 Coming-Of-Age • 10 pages</p>
                     <p class="writing-description">
-                        <b>Logline</b>: On her first day of middle school, an anxious sixth grader
+                        On her first day of middle school, an anxious sixth grader
                         auditions for the jazz band. When everything goes wrong, she
                         learns that trying to fit in only limits her own potential.
                     </p>
@@ -47,30 +47,25 @@ title: Writing
                         <b>Comps</b>: <i>Whiplash</i> for ten year olds.
                     </p>
                     <div class="publication-links">
-                        <a href="#" class="link-button">Preview</a>
+                        <a href="#" class="link-button" data-pdf="{{ site.baseurl }}/scripts/chameleon.pdf">Read</a>
                     </div>
                 </div>
 
                 <div class="writing-item">
                     <h4 class="writing-title">Early Birds</h4>
-                    <p class="writing-meta">TV Pilot • Bridge Adventure Comedy • 12 pages</p>
+                    <p class="writing-meta">TV Pilot • Bridge Adventure Comedy • 11 pages</p>
                     <p class="writing-description">
-                        <b>Series Logline</b>: EARLY BIRDS is a 2-D animated comedy with a socio-emotional
-                        curriculum for bridge audiences.
-                        Nell, a young cardinal with a daring spirit and wild imagination, leads her fellow
-                        backyard birds on exciting adventures. Through their exploits, Nell and her friends
-                        learn to solve problems, think creatively, and support each other.
-                    </p>
-                    <p class="writing-description">
-                        <b>Episode Logline</b>: Tired of the neighborhood squirrels hogging their feeder, four
-                        ambitious birds hatch a plan to break into the shed where the
-                        bird feed is stored.
+                        In this comedy series for bridge audiences, a young cardinal with
+                        a daring spirit and wild imagination leads her fellow
+                        backyard birds on exciting adventures. When the birds
+                        grow tired of the neighborhood squirrels hogging their feeder,
+                        they hatch a plan to break into the shed where the bird feed is stored.
                     </p>
                     <p class="writing-comps">
                         <b>Comps</b>: <i>Tumbleleaf</i> meets <i>Ocean's 11</i>
                     </p>
                     <div class="publication-links">
-                        <a href="#" class="link-button">Read</a>
+                        <a href="#" class="link-button" data-pdf="{{ site.baseurl }}/scripts/early_birds.pdf">Read</a>
                     </div>
                 </div>
             </div>
@@ -78,6 +73,16 @@ title: Writing
     </div>
 </section>
 
+<section class="content-section content-section--compact">
+    <div class="content-container">
+        <div class="about-photo" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="{{ site.baseurl }}/public/sesame.jpg" alt="Caleb posing with Elmo and Cookie Monster" style="width: 35%; max-width: 700px; display: block;">
+            <p style="font-size: 0.95rem; color: var(--gray-medium); text-align: center; margin-top: 0.5rem;">
+                Proud to say that I can, in fact, tell you how to get here.
+            </p>
+        </div>
+    </div>
+</section>
 
 <!-- Shorts & Pilots Section -->
 <section class="content-section bg-section">
@@ -98,8 +103,9 @@ title: Writing
                 <p class="writing-comps">
                     <b>Comps</b>: <i>Coco</i> meets <i>The Chronicles of Narnia</i>
                 </p>
-                <a href="#" class="link-button">Preview</a>
-                <a class="link-button" data-modal="script-request">Full Script</a>
+                <br>
+                <!-- <a href="#" class="link-button">Preview</a> -->
+                <a class="link-button" data-modal="script-request">Request Script</a>
             </div>
             <div class="content-card">
                 <h4 class="card-title">The Prince</h4>
@@ -116,8 +122,9 @@ title: Writing
                 <p class="writing-comps">
                     <b>Comps</b>: <i>The Princess Bride</i> with more zombies and fewer MLTs.
                 </p>
-                <a href="#" class="link-button">Preview</a>
-                <a class="link-button" data-modal="script-request">Full Script</a>
+                <br>
+                <!-- <a href="#" class="link-button">Preview</a> -->
+                <a class="link-button" data-modal="script-request">Request Script</a>
             </div>
             <div class="content-card">
                 <h4 class="card-title">The Wrong Guy</h4>
@@ -133,8 +140,8 @@ title: Writing
                 <p class="writing-comps">
                     <b>Comps</b>: <i>The Other Guys</i> meets <i>North by Northwest</i>
                 </p>
-                <a href="#" class="link-button">Preview</a>
-                <a href="#" class="link-button" data-modal="script-request">Full Script</a>
+                <!-- <a href="#" class="link-button">Preview</a> -->
+                <a href="#" class="link-button" data-modal="script-request">Request Script</a>
             </div>
         </div>
     </div>
@@ -167,6 +174,21 @@ title: Writing
         </div>
     </div>
 </section>
+
+<!-- Modal for PDF Preview -->
+<div class="modal-overlay" id="pdfModal">
+    <div class="modal-content modal-content--wide">
+        <button class="modal-close" data-close-modal="pdfModal" aria-label="Close modal">&times;</button>
+        <div class="pdf-modal-toolbar">
+            <h3 class="modal-title" id="pdfTitle">Preview</h3>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+                <a id="pdfDownload" class="link-button" href="#" download>Download</a>
+                <a id="pdfOpenNew" class="link-button" href="#" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+        </div>
+        <iframe id="pdfViewer" class="pdf-iframe" src="" frameborder="0"></iframe>
+    </div>
+</div>
 
 <!-- Modal for Script Request -->
 <div class="modal-overlay" id="scriptModal">

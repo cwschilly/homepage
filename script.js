@@ -119,6 +119,16 @@ function closeModal(modalId) {
     }
 }
 
+// Clear embedded PDF when closing the PDF modal
+const originalCloseModal = closeModal;
+closeModal = function(modalId) {
+    if (modalId === 'pdfModal') {
+        const pdfViewer = document.getElementById('pdfViewer');
+        if (pdfViewer) pdfViewer.src = '';
+    }
+    originalCloseModal(modalId);
+};
+
 // Handle all data-modal buttons (open modal)
 document.querySelectorAll('[data-modal]').forEach(button => {
     button.addEventListener('click', function(e) {
@@ -145,6 +155,29 @@ if (legacyCloseModal) {
         closeModal('scriptModal');
     });
 }
+
+// Handle PDF preview buttons
+document.querySelectorAll('[data-pdf]').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const pdfUrl = this.getAttribute('data-pdf');
+        const parent = this.closest('.writing-item') || this.closest('.content-card') || document.body;
+        const titleEl = parent.querySelector('.writing-title, .card-title');
+        const title = titleEl ? titleEl.textContent.trim() : 'Preview';
+
+        const pdfViewer = document.getElementById('pdfViewer');
+        const pdfTitle = document.getElementById('pdfTitle');
+        const pdfDownload = document.getElementById('pdfDownload');
+        const pdfOpenNew = document.getElementById('pdfOpenNew');
+
+        if (pdfViewer) pdfViewer.src = pdfUrl;
+        if (pdfTitle) pdfTitle.textContent = title;
+        if (pdfDownload) pdfDownload.href = pdfUrl;
+        if (pdfOpenNew) pdfOpenNew.href = pdfUrl;
+
+        openModal('pdfModal');
+    });
+});
 
 // Close modal when clicking outside
 document.querySelectorAll('.modal-overlay').forEach(modal => {
